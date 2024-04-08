@@ -8,30 +8,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  # test-nodejs-pr:
-  #   name: Test NodeJS PR - ${{ matrix.os }}
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       os: [ubuntu-latest, macos-latest, windows-latest]
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
+  test-nodejs-pr-1:
+    name: Test NodeJS PR - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 16
-  #         # cache: 'npm'
-  #         # cache-dependency-path: '**/package-lock.json'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
 
-  #     - name: npm -v
-  #       run: npm -v
+      - name: Install dependencies
+        run: npm ci
 
-  #     - name: Install dependencies
-  #       run: npm ci
-
-  test-nodejs-pr-fail:
+  test-nodejs-pr-2:
     name: Test NodeJS PR - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -45,8 +40,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          # cache: 'npm'
-          # cache-dependency-path: '**/package-lock.json'
           
       - name: npm -v
         run: |
